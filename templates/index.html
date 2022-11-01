@@ -26,27 +26,19 @@
               </tr>
             </thead>
             <tbody>
+              {% for i in data.ml %}
               <tr>
-                <td class="border px-4 py-2">Intro to CSS</td>
+                <td class="border px-4 py-2">{{i.name}}</td>
                 <td class="border px-4 py-2">
-                  <div class="h-4 w-8 bg-green-500"></div>
+                  <div class="h-4 w-8 bg-{%if i.is_done%}green{%else%}red{%endif%}-500"></div>
                 </td>
                 <td class="border px-4 py-2">
                   <button class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-1 px-4 border border-green-500 hover:border-transparent rounded">
-                    Button
+                    Done
                   </button>
                 </td>
               </tr>
-              <tr class="bg-gray-100">
-                <td class="border px-4 py-2">A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design</td>
-                <td class="border px-4 py-2">Adam</td>
-                <td class="border px-4 py-2">112</td>
-              </tr>
-              <tr>
-                <td class="border px-4 py-2">Intro to JavaScript</td>
-                <td class="border px-4 py-2">Chris</td>
-                <td class="border px-4 py-2">1,280</td>
-              </tr>
+              {%endfor%}
             </tbody>
           </table>
       </div>

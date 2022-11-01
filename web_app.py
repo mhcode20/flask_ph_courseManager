@@ -24,6 +24,7 @@ class main_page:
         self.tDuration = dur
         self.done = 0
         self.ml = tl
+        self.ml.sort(key=lambda x: x.order)
         self.hour,self.min = self.hnm(dur)
     def hnm(self,d):
         h = d//60
