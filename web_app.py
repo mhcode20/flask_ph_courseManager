@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template
 import pickle
 
 
@@ -29,7 +29,12 @@ class main_page:
     def hnm(self,d):
         h = d//60
         m = d%60
-        return h,m
+        return int(h),int(m)
+    def reset(self,id):
+        self.done +=1
+        self.tDuration -= round(self.ml[id].duration)
+        self.hour,self.min = self.hnm(self.tDuration)
+        self.ml[id].done()
 
 mp = main_page(tl,sum)
 
@@ -49,4 +54,9 @@ class vid:
 def hello_world():
     return render_template('index.html',data=mp)
 
+@app.route("/flask/<id>")
+def doneop(id):
+    if mp.ml[int(id)-1].is_done != True:
+        mp.reset(int(id)-1)
+    return redirect("/", code=302)
 app.run()
